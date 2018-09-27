@@ -10,7 +10,7 @@ source("./CVfunction.R")
 sourceCpp("./sparseSCA.cpp")
 
 
-# Generate our Data set X with 100 objects and 30 variables
+# Generate our data set X for our example, with 100 objects and 30 variables
 n <- 100
 x <- 30
 X <- mvrnorm(n = 100, mu = rep(0, x), Sigma = diag(x)) 
@@ -96,15 +96,32 @@ for(i in 1:length(allCommonDisStructures)){
 }
 
 
+# If all the parameters have been chosen final analysis can be done with the sparseSCAcpp function:
+# The function has the following parameters:
+
+# X: input data
+# Q: the number of factors
+# RIDGE: the ridge parameter
+# LASSO: the lasso parameter vector with a lasso parameter for each component
+# fixW: the chosen constraints zero constraints on W
+# maxItrOuterloop: number of iterations
+# nStarts: the amount of starts (DOES NOT WORK YET), the algorithm uses a warm start based on the first Q columns of V from the SVD of X
+# print: print loss function value per iteration 
+# tol: the algorithm terminates when the difference between loss functionsvalues of the iterations is less than tol 
 
 
+# Let's do an analysis
+# Pick a structure at random
+fixW <- allCommonDisStructures[[5]]
+nfactors <- 3
 
-Rcpp::List sparseSCAcpp( arma::mat X, int Q, double RIDGE, arma::vec LASSO, 
-                       arma::mat fixW, int maxItrOuterloop, int nStarts,
-                       bool print, double tol){ 
+sparseSCAcpp(X = X, Q = nfactors, RIDGE = 0.1, LASSO = rep(0.1, nfactors), 
+                       fixW = fixW, maxItrOuterloop = 100000, nStarts = 1,
+                       print = TRUE, tol = 10^-8)
  
-
-
-
+# This function returns:
+# W: The component weight matrix
+# P: the component loading matrix
+# loss: The loss function value upon termination
 
 
