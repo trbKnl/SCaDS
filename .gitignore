@@ -1,0 +1,5 @@
+# Do not track the hidden files
+# excluding the .gitignore file itself
+
+ .*
+!/.gitignore
