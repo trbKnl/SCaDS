@@ -4,8 +4,8 @@
 
 CVfunction.R
 
-- Contains: function to cross validation with the EigenVector method
-- A function that returns all common and distinctive structure for a multi block data set
+- Contains a function to cross validation with the EigenVector method
+- and a function that returns all common and distinctive structure for a multi block data set
 
 sparseSCA.cpp
 
@@ -13,11 +13,11 @@ sparseSCA.cpp
 
 example.R
 
-* Crossvalidation with the EigenVector method for tuning would go in practice
-* Analysis of sample data with SCaDS
+* Analysis of a dummy data set with SCaDS
+* An example of Crossvalidation for the tuning of the meta parameters (lasso, ridge, number of components, particular constraints on the component weights) with the EigenVector method 
 
 
-# R and package versions:
+##### R and package versions:
 
 - R version 3.5.1 (2018-07-02)
 

@@ -1,6 +1,10 @@
-### R-Scripts: Revealing the joint mechanisms in traditional data linked with Big Data
+#### R-Scripts: Revealing the joint mechanisms in traditional data linked with Big Data
 
-#### Folder includes:
+##### Folder includes:
+
+* How_to_use_SCaDS 
+    * Contains the function to perform SCaDS 
+    * contains the function to perform cross validation with the Eigen vector method and a function the obtain all common and distinctive component weight structures
 
 - Analysis_empirical_data_examples_3 
     * Which contains the analysis of the 500 family data
