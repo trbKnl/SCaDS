@@ -2,4 +2,3 @@
 # excluding the .gitignore file itself
 
  .*
-!/.gitignore
