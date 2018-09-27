@@ -1,4 +1,19 @@
 # Do not track the hidden files
 # excluding the .gitignore file itself
 
- .*
+./Simulation_study_4.1/.Rhistory
+./Simulation_study_4.1/.DS_Store
+./Simulation_study_4.1/ridgeTuningForConditions/.DS_Store
+./Simulation_study_4.1/.RData
+./Simulation_study_4.1/sparseSCAcppPackage/.DS_Store
+./Simulation_study_4.1/sparseSCAcppPackage/sparseSCAcppFunction/.DS_Store
+./Analysis_empirical_data_examples_3/.Rhistory
+./Analysis_empirical_data_examples_3/500_fam_study_3.1/.DS_Store
+./Analysis_empirical_data_examples_3/.DS_Store
+./Analysis_empirical_data_examples_3/.allCommonSpecific.R.swo
+./Analysis_empirical_data_examples_3/adni_study_3.2/.DS_Store
+./.DS_Store
+./Simulation_study_4.2/.DS_Store
+./Simulation_study_4.2/cppTesting/.DS_Store
+./Simulation_study_4.2/cppTesting/.davideCode.cpp.swp
+
