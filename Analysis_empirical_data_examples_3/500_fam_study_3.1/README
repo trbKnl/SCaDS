@@ -1,0 +1,32 @@
+# README file the family data analysis
+
+# description of files in the folder
+
+CVfunction.R
+
+- contains function for crossvalidation Eigenvector method
+
+SPARSE_PCA_wRandomStart.R
+
+- contains auxillary functions
+
+analysisFamilyData.R
+
+- contains the analysis script, which makes all plots and tables
+
+family_data.RData
+
+- contains the data (not in this folder because of data sharing policy)
+- to get access the data check the 500 family study website
+- to obtain the data used in this paper see: https://github.com/ZhengguoGu/paperRegularizedSCA/blob/master/ForAuthorsOnly/500FamilyData.Rmd
+
+
+
+# Packages and R version used
+
+R version 3.5.1 (2018-07-02)
+
+ggplot2 3.0.0
+
+
+
