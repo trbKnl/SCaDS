@@ -1,5 +1,6 @@
-#### README: Description of folder content for the simulation study in section 4.1: Recovery of the model parameters under the correct model 
+#### README for the simulation study in section 4.1: Recovery of the model parameters under the correct model 
 
+##### Description of folder content:
 
 SPARSE_PCA_wRandomStart.R
 
