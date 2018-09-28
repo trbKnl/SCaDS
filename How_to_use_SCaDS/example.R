@@ -15,22 +15,21 @@ n <- 100
 x <- 30
 X <- mvrnorm(n = 100, mu = rep(0, x), Sigma = diag(x)) 
 
-# To use the SCaDS method we need to pick values for the lasso
-# and the ridge parameter. A method of choosing these values is by crossvalidation 
+# To use the SCaDS method we need to pick values for the lasso parameter,
+# the ridge parameter, the number of components, and the constraints on the component weights. A method of choosing these values is by crossvalidation 
 # we implemented cross valdiation with the EigenVector method (see the paper for a reference)
 
 
-# This cross validation function can be used as follows by specifying the parameters:
+# This cross validation function can be used by specifying the following parameters:
 # inputDat: the input X 
 # ridge: value for the ridge penalty
 # lasso: value for the lasso penalty
 # nrFolds: number of folds, a sensible default is 10
 # nfactors: the number of components
-# fixW: The imposed constraints weights (0 indicates a constraint, a non zero value indicates a free weight)
+# fixW: The imposed constraints on the component weights (0 indicates a constraint, a non zero value indicates a free weight)
 # nScale: biased or unbased estimator of the variance 1 is unbiased
 # maxItr: maximum iterations of SCaDS
 # scaleDat: can be used if the data is scaled
-
 
 # Let's do a crossvaludation for a set of parameters
 nfactors <- 3
@@ -46,7 +45,7 @@ EigenVectorCV2(inputDat = X , ridge = 0.1, lasso = 0.1, nrFolds = 10, nfactors =
 # cvError: The mean squared prediction error for each individual data point
 
 
-# To pick the "best" ridge value given the other parameters
+# To pick, for example, the "best" ridge value given the other parameters
 # a range of ridge values need to be examined and the best one needs to be picked, This can be done with CV this can be done as follows
 
 ridgeRange <- seq(0, 2, by = 0.01)
@@ -69,10 +68,12 @@ for(i in 1:length(ridgeRange)){
 # you can use the following function: 
 allCommonSpecific(vars, components)
 
-# vars you need to specify the number of variables in each block in a vector:
+# This function has two parameters:
+# vars: the number of variables per block
+# components: the number of components
+# For vars you need to specify the number of variables in each block in a vector:
 # c(10, 5, 5, 10), the first block has 10 variables, the second block 5, the third block 5, the fourth block 10 variabes
 # c(15, 15) the first block has 15 variables the second block has 15 variables
-# Components is the number of components you want to estimate
 
 # Lets say we have 2 blocks where the first 15 variables belong to the first block, and remaning 15 variables belong to the  second block. To get all possible component weight structures do: 
 
@@ -86,7 +87,7 @@ allCommonDisStructures <- allCommonSpecific(vars = c(15, 15), components = 3)
 MSEComDisStruc <- rep(NA, length(allCommonDisStructures)) 
 stdErrMSEComDisStruc <- rep(NA, length(allCommonDisStructures)) 
 
-# Try out all the comon and distinctive structures 
+# Try out all the common and distinctive structures 
 for(i in 1:length(allCommonDisStructures)){
     CVout <- EigenVectorCV2(inputDat = X , ridge = 0.1, lasso = 0.1, nrFolds = 10,
                             nfactors = nfactors, fixW = allCommonDisStructures[[i]], nScale = 0,
@@ -96,7 +97,7 @@ for(i in 1:length(allCommonDisStructures)){
 }
 
 
-# If all the parameters have been chosen final analysis can be done with the sparseSCAcpp function:
+# If all the parameters have been chosen the final analysis can be done with the sparseSCAcpp function:
 # The function has the following parameters:
 
 # X: input data
