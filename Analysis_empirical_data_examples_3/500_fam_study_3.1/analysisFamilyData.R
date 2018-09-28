@@ -190,17 +190,13 @@ VAFw <- function(inputDat, analysisResults){
 
 
 #VAFS for the three models
-round(VAFw(dadMomChild, res1)*100, 1)
-round(VAFw(dadMomChild, res2)*100, 1)
-round(VAFw(dadMomChild, res3)*100, 1)
-
-library(xtable)
+round(VAFw(dadMomChild, res1)*100, 2)
+round(VAFw(dadMomChild, res2)*100, 2)
+round(VAFw(dadMomChild, res3)*100, 2)
 
 #make the SCaDS table
 table1 <- res3$W
 table1 <- round(table1, 3)
-rownames(table1) <- namesDadMomChild
-colnames(table1) <- paste("T" , 1:6, sep = "")
 
 #make the varimax table
 table2 <- matrix(as.vector(varimax(res1$W)$loadings), 23, 6)
@@ -214,8 +210,6 @@ table3 <- Wrot
 table3 <- round(table3, 3)
 rownames(table3) <- namesDadMomChild
 colnames(table3) <- paste("T" , 1:6, sep = "")
-table3
-
 
 besteStructuur <-  allWs3comp[[bestModel3comp]]
 rownames(besteStructuur) <- namesDadMomChild 
@@ -226,7 +220,7 @@ colnames(besteStructuur) <- 1:6
 load('./resPaper.RData')
 
 ##############################################################################
-# script to get the rotateed W matrix
+# script to get the rotated W matrix
 
 library(devtools)
 install_github("ZhengguoGu/RegularizedSCA")
@@ -253,6 +247,26 @@ round(vaf*100,1)
 
 #res4<-list(loss = res3$loss, minLoss = res3$minLoss, W = Wrot, P = Prot)
 #round(VAFw(dadMomChild, res4)*100, 1)
+
+#get #vaf per component
+vafq <- c()
+for (q in 1:fac) {
+    xhatq <- dadMomChild%*%res3$W[,q]%*%t(res3$P[,q])
+    DEVsq <- sum(colSums((xhatq-dadMomChild)^2))
+    ssqX <- sum(colSums(dadMomChild^2))
+    vafq <- cbind(vafq, 1 - DEVsq/ssqX)
+}
+round(vafq*100,2)
+
+vafq <- c()
+for (q in 1:fac) {
+    xhatq <- dadMomChild%*%Wrot[,q]%*%t(Prot[,q])
+    DEVsq <- sum(colSums((xhatq-dadMomChild)^2))
+    ssqX <- sum(colSums(dadMomChild^2))
+    vafq <- cbind(vafq, 1 - DEVsq/ssqX)
+}
+round(vafq*100, 2)
+
 
 #########################
 # function pstr
