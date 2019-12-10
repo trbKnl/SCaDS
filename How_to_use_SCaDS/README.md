@@ -11,9 +11,14 @@ sparseSCA.cpp
 
 - The cpp implementation of the SCaDS algorithm
 
+sparseSCA_with_multiple_starts.cpp
+
+- The cpp implementation of the SCaDS algorithm with random starts and user defined starting values
+
 example.R
 
 * Analysis of a dummy data set with SCaDS
+* Analysis of a dummy data set with SCaDS with random starts and user defined starting values 
 * An example of Crossvalidation for the tuning of the meta parameters (lasso, ridge, number of components, particular constraints on the component weights) with the EigenVector method 
 
 

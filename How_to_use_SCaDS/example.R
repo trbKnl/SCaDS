@@ -126,3 +126,37 @@ sparseSCAcpp(X = X, Q = nfactors, RIDGE = 0.1, LASSO = rep(0.1, nfactors),
 # loss: The loss function value upon termination
 
 
+
+##################################################################################################################################
+# SCaDS with user supplied starting values and random starts
+
+# If the user wants to supply starting values, the user can do so with sparseSCAcpp_rand_start()
+# An extra argument called "Wstart" is added.
+# if sum(Wstart) == 0, a warm start will happen the first start!
+# after that, a matrix with values from a uniform distribution times the iterator number
+# is added to the starting values of the warm start.
+
+# if sum(Wstart) != 0, Wstart is used as starting value matrix. After the first start
+# a matrix with values from a uniform distribution times the iterator number
+# is added to Wstart
+
+#example is given below
+sourceCpp("./sparseSCA_with_multiple_starts.cpp")
+
+n <- 100
+x <- 30
+X <- mvrnorm(n = 100, mu = rep(0, x), Sigma = diag(x)) 
+
+sparseSCAcpp_rand_start(X = X, Q = nfactors, RIDGE = 0.1, LASSO = rep(0.1, nfactors), 
+                       fixW = fixW, Wstart = matrix(1, x, nfactors), maxItrOuterloop = 100000, nStarts = 1000,
+                       print = TRUE, tol = 10^-8)
+
+
+
+
+
+
+
+
+
+
